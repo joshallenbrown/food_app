@@ -25,6 +25,8 @@ class FlavorsController < ApplicationController
   # POST /flavors.json
   def create
     @flavor = Flavor.new(flavor_params)
+    @product = params[:id]
+    binding.pry
 
     respond_to do |format|
       if @flavor.save

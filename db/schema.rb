@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920002717) do
+ActiveRecord::Schema.define(version: 20160930024417) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_accounts_on_product_id"
+    t.index ["store_id"], name: "index_accounts_on_store_id"
+  end
+
+  create_table "demos", force: :cascade do |t|
+    t.integer  "visit_id"
+    t.integer  "product_id"
+    t.integer  "flavor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flavor_id"], name: "index_demos_on_flavor_id"
+    t.index ["product_id"], name: "index_demos_on_product_id"
+    t.index ["visit_id"], name: "index_demos_on_visit_id"
+  end
 
   create_table "flavors", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +41,13 @@ ActiveRecord::Schema.define(version: 20160920002717) do
     t.index ["product_id"], name: "index_flavors_on_product_id"
   end
 
+  create_table "merches", force: :cascade do |t|
+    t.integer  "visit_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["visit_id"], name: "index_merches_on_visit_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.integer  "flavor_id"
@@ -28,6 +55,11 @@ ActiveRecord::Schema.define(version: 20160920002717) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.index ["flavor_id"], name: "index_products_on_flavor_id"
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,6 +86,15 @@ ActiveRecord::Schema.define(version: 20160920002717) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  end
+
+  create_table "visits", force: :cascade do |t|
+    t.integer  "merch_id"
+    t.integer  "demo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["demo_id"], name: "index_visits_on_demo_id"
+    t.index ["merch_id"], name: "index_visits_on_merch_id"
   end
 
 end
