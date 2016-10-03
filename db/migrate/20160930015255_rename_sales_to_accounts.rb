@@ -1,7 +1,5 @@
-class RenameAccount
-sToAccounts < ActiveRecord::Migration[5.0]
+class RenameSalesToAccounts < ActiveRecord::Migration[5.0]
   def change
-  	rename_table :account
-s, :accounts
+  	rename_table :sales, :accounts
   end
 end

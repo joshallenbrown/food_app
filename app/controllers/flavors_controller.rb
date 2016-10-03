@@ -26,7 +26,7 @@ class FlavorsController < ApplicationController
   def create
     @flavor = Flavor.new(flavor_params)
     @product = params[:id]
-    binding.pry
+    
 
     respond_to do |format|
       if @flavor.save

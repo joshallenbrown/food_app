@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 20160930024417) do
   create_table "flavors", force: :cascade do |t|
     t.string   "name"
     t.integer  "product_id"
-    t.decimal  "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.decimal  "price",      precision: 8, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.index ["product_id"], name: "index_flavors_on_product_id"
   end
 
